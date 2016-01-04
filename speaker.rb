@@ -11,11 +11,16 @@ class Speaker
   end
 
   def convert_time_to_seconds(t)
-    hours, minutes, seconds = t.match(/(^.*)(:)(.*)(:)(.*)/i).captures.reject! {|n| n == ':'}.map {|n| n.to_i}
-    hours *= 3600
-    minutes *= 60
+    pattern = /(^.*)(:)(.*)(:)(.*)/i
+    if pattern =~ t
+      hours, minutes, seconds = t.match(pattern).captures.reject! {|n| n == ':'}.map {|n| n.to_i}
+      hours *= 3600
+      minutes *= 60
 
-    hours + minutes + seconds
+      hours + minutes + seconds
+    else
+      raise 'Incorrect time format.'
+    end
   end
 
   def format_items
