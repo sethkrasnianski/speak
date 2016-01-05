@@ -33,6 +33,8 @@ class Speaker
     second = 0
 
     until second > @items.last[:time]
+      print "\r#{second} seconds elapsed"
+
       item = @items.select {|i| i[:time] == second}.first
 
       if item
