@@ -11,9 +11,9 @@ class Speaker
   end
 
   def convert_time_to_seconds(t)
-    pattern = /(^.*)(:)(.*)(:)(.*)/i
+    pattern = /^(?:(?:([01]?\d|2[0-3]):)?([0-5]?\d):)?([0-5]?\d)$/i
     if pattern =~ t
-      hours, minutes, seconds = t.match(pattern).captures.reject! {|n| n == ':'}.map {|n| n.to_i}
+      hours, minutes, seconds = t.match(pattern).captures.map {|n| n.to_i}
       hours *= 3600
       minutes *= 60
 
